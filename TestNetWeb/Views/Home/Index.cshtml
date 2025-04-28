@@ -1,0 +1,146 @@
+﻿@model MyMvcApp.Models.RegistrationModel
+
+@{
+    ViewData["Title"] = "Registration";
+    string message = Context.Request.Query["message"]; 
+}
+
+<div class="col-lg-5">
+    <div class="card p-4">
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <div class="alert alert-info alert-dismissible fade show d-flex align-items-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <div>
+                    @ViewBag.Message
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <form asp-action="CreateRegistration" asp-controller="Home" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-12" style="padding-bottom: 30px;">
+                    <span class="sign-required size-textsm">* Required</span>
+                </div>
+                <div class="p-3 py-3">
+                    <div class="form-one-col-row form-col-column">
+                        <div class="label-form">Company Name<span class="sign-required">*</span></div>
+                        <div class="field-form">
+                            <div class="field-form">
+                                <input type="text" class="form-control" asp-for="CompanyName" id="" placeholder="Enter Text" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-one-col-row form-col-column">
+                        <div class="label-form">NPWP<span class="sign-required">*</span></div>
+                        <div class="field-form">
+                            <div class="field-form">
+                                <input type="text" class="form-control" asp-for="NPWP" id="" placeholder="Enter Text" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-one-col-row form-col-column">
+                        <div class="label-form">Director Name<span class="sign-required">*</span></div>
+                        <div class="field-form">
+                            <div class="field-form">
+                                <input type="text" asp-for="DirectorName" class="form-control" id="" placeholder="Enter Text" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-one-col-row form-col-column">
+                        <div class="label-form">PIC Name<span class="sign-required">*</span></div>
+                        <div class="field-form">
+                            <div class="field-form">
+                                <input type="text" asp-for="PICName" class="form-control" id="" placeholder="Enter Text" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-one-col-row form-col-column">
+                        <div class="label-form">Email<span class="sign-required">*</span></div>
+                        <div class="field-form">
+                            <div class="field-form">
+                                <input type="text" class="form-control" asp-for="Email" id="" placeholder="Enter Text" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-one-col-row form-col-column">
+                        <div class="label-form">Phone Number<span class="sign-required">*</span></div>
+                        <div class="field-form">
+                            <div class="field-form">
+                                <input type="text" class="form-control" asp-for="PhoneNumber" id="" placeholder="Enter Text" required>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 style="padding-left:5px;"><b>Document Upload</b></h6>
+
+                    <div class="row-input-file">
+                        <div class="label">NPWP <span class="sign-required">*</span></div>
+                        <div class="input-group custominputfile">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="FileAnnouncement" asp-for="NPWPFile" required>
+                                <label class="custom-file-label" for="FileAnnouncement">Search file</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text textapps-xs">
+                                    <img class="img-icon"
+                                         src="~/img/icon-upload-file-solid.svg"> Upload
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-input-file">
+                        <div class="label">Power of Attorey <span class="sign-required">*</span></div>
+                        <div class="input-group custominputfile">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="FileAnnouncement" asp-for="PowerOfAttorneyFile" required>
+                                <label class="custom-file-label" for="FileAnnouncement">Search file</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text textapps-xs">
+                                    <img class="img-icon"
+                                         src="~/img/icon-upload-file-solid.svg"> Upload
+                                </span>
+                            </div>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="true" asp-for="AllowAccessAfterClosing">
+                            <label for="customCheckbox1" class="custom-control-label">
+                                Allow access to invitation after closing date Allow access to invitation
+                                Allow access to invitation after closing date Allow access to invitation
+                            </label>
+                            <br>
+                            <div class="d-flex align-items-center gap-xl flex-wrap header-content-action">
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="clearForm()">
+                                    Clear Form
+                                </button>
+                                <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function clearForm() {
+            try {
+                $('#registrationForm')[0].reset();
+
+                $('.custom-file-input').each(function() {
+                    $(this).val('');
+
+                    $(this).next('.custom-file-label').text('Search file');
+                });
+            } catch (error) {
+                console.error("Error clearing form: ", error);
+            }
+        }
+        $(document).ready(function () {  
+        });
+    </script>
+}

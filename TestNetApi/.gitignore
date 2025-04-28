@@ -1,0 +1,50 @@
+# Ignore the .NET Core build output directories
+bin/
+obj/
+
+# Ignore user-specific files
+.vs/
+.vscode/
+.idea/
+
+# Ignore build artifacts for Visual Studio for Mac and JetBrains Rider
+.idea/
+
+# Ignore ASP.NET Core Environment settings files
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+
+# Ignore package directories and files
+.nuget/
+packages/
+
+# Ignore test results
+TestResults/
+
+# Ignore user-specific NuGet config
+.nuget/packages/
+
+# Ignore directories created by Visual Studio for macOS
+.vscode/
+
+# Ignore log files
+*.log
+
+# Ignore ASP.NET Core Web publish output
+wwwroot/
+
+# Ignore the project-specific SQLite file (if exists)
+project.db
+
+# Ignore temporary files for macOS
+.DS_Store
+
+# Ignore Windows Installer cache
+Thumbs.db
+
+# Ignore JetBrains Rider's solution-wide settings
+.idea/
+
+# Ignore Windows specific files
+desktop.ini
